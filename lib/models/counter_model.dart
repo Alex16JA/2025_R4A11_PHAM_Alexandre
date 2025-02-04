@@ -1,17 +1,13 @@
-import 'package:flutter/foundation.dart';
+class CounterModel {
+  int counter;
 
-class CounterModel extends ChangeNotifier {
-  int _counter = 0;
+  CounterModel({this.counter = 0});
 
-  int get counter => _counter;
-
-  void incrementCounter() {
-    _counter++;
-    notifyListeners();
+  void increment() {
+    counter++;
   }
 
-  void decrementCounter() {
-    _counter--;
-    notifyListeners();
+  void decrement() {
+    counter--;
   }
 }
