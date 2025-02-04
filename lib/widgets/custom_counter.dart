@@ -18,6 +18,11 @@ class CustomCounter extends StatelessWidget {
           '${counterViewModel.counter}',
           style: Theme.of(context).textTheme.headlineMedium,
         ),
+        Icon(
+          Icons.favorite,
+          color: counterViewModel.counter < 0 ? Colors.black : Colors.red,
+          size: 50,
+        ),
         IconButton(
           icon: const Icon(Icons.add),
           onPressed: counterViewModel.increment,
