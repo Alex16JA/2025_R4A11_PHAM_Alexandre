@@ -92,6 +92,23 @@ class MapModel {
     }
   }
 
+  void revealAll() {
+    for (int i = 0; i < nbLine; i++) {
+      for (int j = 0; j < nbCol; j++) {
+        _cases[i][j].hidden = false;
+      }
+    }
+  }
+
+  void explode(int caseX, int caseY) {
+    _cases[caseX][caseY].hasExploded = true;
+    revealAll();
+  }
+
+  void toggleFlag(int x, int y) {
+    _cases[x][y].hasFlag = !_cases[x][y].hasFlag;
+  }
+
 
 
 
