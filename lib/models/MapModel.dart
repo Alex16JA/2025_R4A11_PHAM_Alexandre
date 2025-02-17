@@ -7,10 +7,8 @@ class MapModel {
   int nbBomb = 0;
   List<List<CaseModel>> _cases = List<List<CaseModel>>.empty();
 
-  // Ajoutez ce getter pour accéder à _cases
   List<List<CaseModel>> get cases => _cases;
 
-  // Le reste du code reste inchangé
   void initCases() {
     _cases = List.generate(nbLine, (i) => List.generate(nbCol, (j) => CaseModel()));
   }
@@ -107,4 +105,19 @@ class MapModel {
   void toggleFlag(int x, int y) {
     _cases[x][y].hasFlag = !_cases[x][y].hasFlag;
   }
+
+  void revealAdjacents(int caseX, int caseY) {
+  for (int x = -1; x <= 1; x++) {
+    for (int y = -1; y <= 1; y++) {
+      if (x == 0 && y == 0) continue;
+
+      int newX = caseX + x;
+      int newY = caseY + y;
+
+      if (tryGetCase(newX, newY) && _cases[newX][newY].hidden) {
+        reveal(newX, newY);
+      }
+    }
+  }
+}
 }
