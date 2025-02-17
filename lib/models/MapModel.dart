@@ -2,16 +2,17 @@ import 'dart:math';
 import 'CaseModel.dart';
 
 class MapModel {
-
   int nbLine = 0;
   int nbCol = 0;
   int nbBomb = 0;
   List<List<CaseModel>> _cases = List<List<CaseModel>>.empty();
 
+  // Ajoutez ce getter pour accéder à _cases
+  List<List<CaseModel>> get cases => _cases;
+
+  // Le reste du code reste inchangé
   void initCases() {
-    _cases = List.generate(nbLine,
-          (i) => List.generate(nbCol, (j) => CaseModel()),
-    );
+    _cases = List.generate(nbLine, (i) => List.generate(nbCol, (j) => CaseModel()));
   }
 
   void initBomb() {
@@ -68,15 +69,13 @@ class MapModel {
   }
 
   void reveal(int caseX, int caseY) {
-
     CaseModel caseEnCours = _cases[caseX][caseY];
     if (!caseEnCours.hidden) return;
     caseEnCours.hidden = false;
 
     if (caseEnCours.hasBomb) {
       explode(caseX, caseY);
-    }
-    else if (caseEnCours.number == 0) {
+    } else if (caseEnCours.number == 0) {
       for (int x = -1; x <= 1; x++) {
         for (int y = -1; y <= 1; y++) {
           if (x == 0 && y == 0) continue;
@@ -108,10 +107,4 @@ class MapModel {
   void toggleFlag(int x, int y) {
     _cases[x][y].hasFlag = !_cases[x][y].hasFlag;
   }
-
-
-
-
-
-
 }
